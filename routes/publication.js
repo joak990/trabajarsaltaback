@@ -1,5 +1,7 @@
 
 const express = require('express');
+const createPost = require('../controllers/CreatePublicationController');
+const getallposts = require('../controllers/GetallPublicationsController');
 const PublicationRouter = express.Router();
 
 
@@ -8,19 +10,20 @@ const PublicationRouter = express.Router();
 PublicationRouter.post("/createpost", async (req,res) => {
     try {
         
-    
-    res.status(200).json("hola")
+     const {user,content,phone,salary} = req.body
+     const newpost = await createPost(user,content,phone,salary)
+    res.status(200).json(newpost)
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
 });
 
 
-PublicationRouter.get("/getalljobs", async (req,res) => {
+PublicationRouter.get("/getallpost", async (req,res) => {
     try {
         
-    
-    res.status(200).json("hola")
+    const getallpost = await getallposts()
+    res.status(200).json(getallpost)
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
