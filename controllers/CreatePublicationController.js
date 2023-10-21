@@ -22,6 +22,8 @@ const createPost = async (user, content, phone, salary) => {
       
     });
 
+
+
    
     await newPost.save();
 
@@ -31,5 +33,27 @@ const createPost = async (user, content, phone, salary) => {
     throw error;
   }
 }
+
+
+
+
+// Función para eliminar las publicaciones vencidas
+const eliminarPublicacionesVencidas = async () => {
+  try {
+    const fechaActual = moment().tz('America/Argentina/Buenos_Aires');
+    const fechaLimiteFormateada = fechaActual.format('DD-MM-YYYY HH:mm:ss')
+    
+    console.log(fechaLimiteFormateada);
+    const numDocumentosEliminados = await Publication.deleteMany({ FechaLimite: { $lt: fechaLimiteFormateada } });
+    console.log('Documentos vencidos eliminados correctamente');
+    console.log('Número de documentos eliminados:', numDocumentosEliminados.deletedCount);
+  } catch (error) {
+    console.error('Error al eliminar los documentos vencidos:', error);
+  }
+};
+
+// Programa la tarea para ejecutar la función cada 10 segundos (10000 ms)
+setInterval(eliminarPublicacionesVencidas, 10000);
+
 
 module.exports = createPost;
