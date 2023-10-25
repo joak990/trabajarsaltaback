@@ -1,25 +1,33 @@
+
 const mongoose = require('mongoose');
 
 
 
 // Definición del esquema de Publication
-const publicationSchema = new mongoose.Schema({
+const CandidateSchema = new mongoose.Schema({
   // Referencia a la tabla User
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-  content: {
+  name: {
     type: String,
     required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  curriculum: {
+    type: String, // Almacena el currículum en formato Base64
   },
   phone: {
     type: String,
-    required: true,
-  },
-  salary: {
-    type: Number,
     required: true,
   },
   isDeleted: {
@@ -41,6 +49,6 @@ const publicationSchema = new mongoose.Schema({
 });
 
 // Crear el modelo de Publication
-const Publication = mongoose.model('Publication', publicationSchema);
+const Candidate = mongoose.model('Candidate', CandidateSchema);
 
-module.exports = Publication;
+module.exports = Candidate;

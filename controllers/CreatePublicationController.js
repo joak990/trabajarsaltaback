@@ -7,8 +7,10 @@ const createPost = async (user, content, phone, salary) => {
   const fechaPublicacion = fechaActual.format('DD-MM-YYYY HH:mm:ss');
   const fechaDb = fechaActual.format('DD-MM-YYYY ');
   const fechaVencimiento = moment().add(1, 'days').format('DD-MM-YYYY HH:mm:ss');
-
-   
+  const existingUser = await Publication.findOne({ user: user });
+   if(existingUser){
+    return false
+   }
     const newPost = new Publication({
       user: user, 
       content: content,
