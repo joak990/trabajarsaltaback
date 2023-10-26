@@ -19,6 +19,10 @@ const CandidateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sector: {
+    type: String,
+    required: true,
+  },
   city: {
     type: String,
     required: true,

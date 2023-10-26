@@ -33,12 +33,12 @@ const storage = multer.diskStorage({
 
   CandidateRouter.post('/candidate', upload.single('curriculum'), async (req, res) => {
     try {
-      const { user, name, city, description,curriculum, phone } = req.body; // Los campos del formulario
+      const { user, name, city, description,curriculum, phone ,sector} = req.body; // Los campos del formulario
    
-      console.log(user, name, city, description, phone); // Puedes imprimir los valores para verificar
+      console.log(user, name, city, description, phone,sector); // Puedes imprimir los valores para verificar
   
       // Realiza el proceso de creación de candidato en tu base de datos
-      const newcandidate = await createcandidate(user, name, city, description,curriculum, phone);
+      const newcandidate = await createcandidate(user, name, city, description,curriculum, phone,sector);
   
       res.status(200).json(newcandidate);
     } catch (error) {

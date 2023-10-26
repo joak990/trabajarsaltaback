@@ -12,6 +12,8 @@ const getallcandidates = async () => {
         description: candidate.description,
         phone: candidate.phone,
         curriculum: candidate.curriculum,
+        FechaPublicacion:candidate.FechaPublicacion,
+        sector:candidate.sector,
         FechaDB: candidate.FechaDB,
     }));
 

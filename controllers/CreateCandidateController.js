@@ -1,6 +1,6 @@
 const Candidate = require("../models/candidate");
 const moment = require('moment-timezone');
-const createcandidate = async (user,name,city,description,curriculum,phone) => {
+const createcandidate = async (user,name,city,description,curriculum,phone,sector) => {
     try {
   
       const fechaActual = moment().tz('America/Argentina/Buenos_Aires');
@@ -19,6 +19,7 @@ const createcandidate = async (user,name,city,description,curriculum,phone) => {
         description: description,
         curriculum:curriculum,
         phone: phone,
+        sector:sector,
         FechaPublicacion:fechaPublicacion,
         FechaLimite:fechaVencimiento,
         FechaDB:fechaDb,
