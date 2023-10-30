@@ -16,7 +16,7 @@ const createuser = async (name,email,uid) => {
         uid: uid,
         root: "google",
         banned:false,
-        status:true,
+        status:false,
         
   
         

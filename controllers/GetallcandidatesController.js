@@ -15,8 +15,10 @@ const getallcandidates = async () => {
         FechaPublicacion:candidate.FechaPublicacion,
         sector:candidate.sector,
         FechaDB: candidate.FechaDB,
+        user:candidate.user
+ 
     }));
-
+   console.log(candidatesData);
     return candidatesData;
   } catch (error) {
     console.error('Error al obtener candidatos:', error);

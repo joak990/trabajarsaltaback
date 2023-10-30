@@ -12,11 +12,16 @@ const getChatsList = async (idUser) => {
 
     for (const message of user.receivedMessages) {
       const senderId = message.sender.toString();
+
+      // Obtener el estado del remitente
+      const sender = await User.findById(senderId, 'status');
+      const senderStatus = sender ? sender.status : null;
+
       if (!chatList.has(senderId)) {
         chatList.set(senderId, {
           userId: senderId,
           lastMessage: message.content,
-          status:user.status
+          status: senderStatus, // Agrega el estado del remitente al chat
         });
       }
     }

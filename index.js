@@ -16,7 +16,7 @@ const path = require('path');
 app.use(bodyParser.json({ limit: '100mb' }));
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(express.json())
-app.use(fileUpload())
+
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'))
 app.use((req, res, next) => {
