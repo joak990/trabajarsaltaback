@@ -5,7 +5,7 @@ const User = require("../models/user")
 const createuser = async (name,email,uid) => {
     try {
         const existingUser = await User.findOne({ email: email });
-        if(existingUser.banned === true)return "banned"
+  
         if (existingUser) {
             return existingUser;
         }
@@ -16,8 +16,7 @@ const createuser = async (name,email,uid) => {
         uid: uid,
         root: "google",
         banned:false,
-        FechaLimite:fechaVencimiento,
-        FechaDB:fechaDb,
+        status:true,
         
   
         
@@ -26,7 +25,7 @@ const createuser = async (name,email,uid) => {
      
       await newUser.save();
   
-      return newPost; 
+      return newUser; 
     } catch (error) {
       console.error('Error al crear usuario:', error);
       throw error;

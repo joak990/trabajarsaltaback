@@ -3,7 +3,9 @@ const router = Router();
 const PublicationRouter = require("./publication")
 const UsersRouter = require("./user");
 const CandidateRouter = require('./Candidate');
+const SenderRouter = require('./Messages');
 router.use("/", UsersRouter);
 router.use("/", PublicationRouter);
 router.use("/", CandidateRouter);
+router.use("/", SenderRouter);
 module.exports = router
