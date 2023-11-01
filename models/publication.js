@@ -19,18 +19,18 @@ const publicationSchema = new mongoose.Schema({
     required: true,
   },
   salary: {
-    type: Number,
+    type: String,
     required: true,
   },
   isDeleted: {
     type: Boolean,
     default: false,
   },
-  FechaPublicacion: {
+  FechaPubli: {
     type: String,
     default: false,
   },
-  FechaLimite: {
+  FechaLimi: {
     type: String,
     default: false,
   },

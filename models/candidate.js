@@ -38,11 +38,11 @@ const CandidateSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  FechaPublicacion: {
+  FechaPubli: {
     type: String,
     default: false,
   },
-  FechaLimite: {
+  FechaLimi: {
     type: String,
     default: false,
   },

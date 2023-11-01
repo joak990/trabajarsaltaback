@@ -1,53 +1,52 @@
+
 const Publication = require("../models/publication");
 const moment = require('moment-timezone');
+
 const createPost = async (user, content, phone, salary) => {
   try {
-
     const fechaActual = moment().tz('America/Argentina/Buenos_Aires');
-  const fechaPublicacion = fechaActual.format('DD-MM-YYYY HH:mm:ss');
-  const fechaDb = fechaActual.format('DD-MM-YYYY ');
-  const fechaVencimiento = moment().add(1, 'days').format('DD-MM-YYYY HH:mm:ss');
-  const existingUser = await Publication.findOne({ user: user });
-   if(existingUser){
-    return false
-   }
+    const fechaPublicacion = fechaActual.format('DD-MM-YYYY');
+    const fechaDb = fechaActual.format('DD-MM-YYYY');
+    const fechaVencimiento = fechaActual.clone().add(1, 'days').format('MM-DD-YYYY');
+
+    console.log(fechaVencimiento,"venciggggggggggggggg");
+    const existingUser = await Publication.findOne({ user: user });
+    
+    if (existingUser) {
+      return false;
+    }
+    
     const newPost = new Publication({
       user: user, 
       content: content,
       phone: phone,
       salary: salary,
-      FechaPublicacion:fechaPublicacion,
-      FechaLimite:fechaVencimiento,
-      FechaDB:fechaDb,
-      
-
-      
-    });
-
-
-
+      FechaPubli: fechaPublicacion,
+      FechaLimi: fechaVencimiento,
+      FechaDB: fechaDb,
+    })
    
     await newPost.save();
-
+    
     return newPost; 
   } catch (error) {
     console.error('Error al crear publicación:', error);
     throw error;
   }
-}
+};
 
-
-
-
-// Función para eliminar las publicaciones vencidas
 const eliminarPublicacionesVencidas = async () => {
   try {
-    const fechaActual = moment().tz('America/Argentina/Buenos_Aires');
-    const fechaLimiteFormateada = fechaActual.format('DD-MM-YYYY HH:mm:ss')
-    
-    console.log(fechaLimiteFormateada);
-    const numDocumentosEliminados = await Publication.deleteMany({ FechaLimite: { $lt: fechaLimiteFormateada } });
+    const fecha = "10-08-2023"
+    const allPublicationDates = await Publication.find({}, 'FechaLimi');
+
+console.log(allPublicationDates);
+const fechaLimite = moment().tz('America/Argentina/Buenos_Aires').format('MM-DD-YYYY');
+
+
+const numDocumentosEliminados = await Publication.deleteMany({ FechaLimi: { $lt: fechaLimite } })
     console.log('Documentos vencidos eliminados correctamente');
+    console.log(fechaLimite);
     console.log('Número de documentos eliminados:', numDocumentosEliminados.deletedCount);
   } catch (error) {
     console.error('Error al eliminar los documentos vencidos:', error);
@@ -55,7 +54,5 @@ const eliminarPublicacionesVencidas = async () => {
 };
 
 // Programa la tarea para ejecutar la función cada 10 segundos (10000 ms)
-setInterval(eliminarPublicacionesVencidas, 10000);
-
-
+setInterval(eliminarPublicacionesVencidas, 120000);
 module.exports = createPost;
