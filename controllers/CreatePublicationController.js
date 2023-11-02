@@ -2,7 +2,7 @@
 const Publication = require("../models/publication");
 const moment = require('moment-timezone');
 
-const createPost = async (user, content, phone, salary) => {
+const createPost = async (user, content, phone, salary,sector) => {
   try {
     const fechaActual = moment().tz('America/Argentina/Buenos_Aires');
     const fechaPublicacion = fechaActual.format('DD-MM-YYYY');
@@ -23,7 +23,9 @@ const createPost = async (user, content, phone, salary) => {
       salary: salary,
       FechaPubli: fechaPublicacion,
       FechaLimi: fechaVencimiento,
+      sector:sector,
       FechaDB: fechaDb,
+    
     })
    
     await newPost.save();
