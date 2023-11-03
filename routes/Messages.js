@@ -3,6 +3,7 @@ const SenderRouter = express.Router()
 const sendmessage = require('../controllers/SenderMessagesController');
 const getprivatemessage = require('../controllers/GetPrivateMessagesController');
 const getChatsList = require('../controllers/GetChatsController');
+const changereadmessage = require('../controllers/ChangeStatusIsReadController');
 
 SenderRouter.post("/sendermessages", async (req,res) => {
     try {
@@ -49,6 +50,19 @@ SenderRouter.get("/getchats/:idUser",async (req, res) => {
     }
   });
   
+
+
+  SenderRouter.post("/isread",async (req, res) => {
+    const { id,idUser } = req.body;
+ 
+    try {
+      const messageread = await changereadmessage(id,idUser)
+      return res.status(200).json(messageread);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  });
   
   
 
