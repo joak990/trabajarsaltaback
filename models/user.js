@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema({
       receiver: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
       content: String,
       timestamp: { type: Date, default: Date.now },
+      isRead: { type: Boolean, default: false },
     },
   ],
   receivedMessages: [
@@ -37,6 +38,7 @@ const userSchema = new mongoose.Schema({
       sender: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
       content: String,
       timestamp: { type: Date, default: Date.now },
+      isRead: { type: Boolean, default: false },
     },
   ],
 });
