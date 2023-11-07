@@ -22,6 +22,10 @@ const publicationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  sector: {
+    type: String,
+    required: true,
+  },
   isDeleted: {
     type: Boolean,
     default: false,
