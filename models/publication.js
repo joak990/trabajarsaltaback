@@ -34,6 +34,14 @@ const publicationSchema = new mongoose.Schema({
     type: String,
     default: false,
   },
+  departament: {
+    type: String,
+    default: false,
+  },
+  sector: {
+    type: String,
+    default: false,
+  },
   FechaDB: {
     type: String,
     default: false,

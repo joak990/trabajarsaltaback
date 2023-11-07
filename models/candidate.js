@@ -28,7 +28,8 @@ const CandidateSchema = new mongoose.Schema({
     required: true,
   },
   curriculum: {
-    type: String, // Almacena el currículum en formato Base64
+    type: String,
+    required: true,
   },
   phone: {
     type: String,

@@ -10,8 +10,8 @@ const Publication = require("../models/publication");
 PublicationRouter.post("/createpost", async (req,res) => {
     try {
         
-     const {user,content,phone,salary} = req.body
-     const newpost = await createPost(user,content,phone,salary)
+     const {user,content,phone,salary,sector,departament} = req.body
+     const newpost = await createPost(user,content,phone,salary,sector,departament)
     res.status(200).json(newpost)
     } catch (error) {
         res.status(400).send({ error: error.message });
