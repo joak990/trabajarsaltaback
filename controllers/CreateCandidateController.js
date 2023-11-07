@@ -32,7 +32,7 @@ const createcandidate = async (user,name,city,description,phone,sector) => {
      
       await newCandidate.save();
   
-      return newCandidate; 
+      return true; 
     } catch (error) {
       console.error('Error al crear publicación:', error);
       throw error;
