@@ -29,7 +29,7 @@ const CandidateSchema = new mongoose.Schema({
   },
   curriculum: {
     type: String,
-    required: true,
+    required: false,
   },
   phone: {
     type: String,

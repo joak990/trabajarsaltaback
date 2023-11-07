@@ -13,10 +13,10 @@ const CandidateRouter = express.Router();
 
 CandidateRouter.post('/candidate', async (req, res) => {
   try {
-    const { user, name, city, description, phone, sector ,curriculum} = req.body;
-
-   const newcandidate = await createcandidate( user, name, city, description, phone, sector ,curriculum)
-      res.status(400).json(newcandidate);
+    const { user, name, city, description, phone, sector } = req.body;
+console.log(req.body);
+   const newcandidate = await createcandidate( user, name, city, description, phone, sector )
+      res.status(200).json(newcandidate);
     
   } catch (error) {
     res.status(400).json({ error: error.message });

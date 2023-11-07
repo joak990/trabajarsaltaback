@@ -7,6 +7,6 @@ const upload = require("../libs/storage")
 const SenderRouter = require('./Messages');
 router.use("/", UsersRouter);
 router.use("/", PublicationRouter);
-router.use("/",upload.single('curriculum'), CandidateRouter);
+router.use("/", CandidateRouter);
 router.use("/", SenderRouter);
 module.exports = router
