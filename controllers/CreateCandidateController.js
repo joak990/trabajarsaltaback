@@ -1,6 +1,6 @@
 const Candidate = require("../models/candidate");
 const moment = require('moment-timezone');
-const createcandidate = async (user,name,city,description,curriculum,phone,sector) => {
+const createcandidate = async (user,name,city,description,phone,sector,curriculum) => {
     try {
   
       const fechaActual = moment().tz('America/Argentina/Buenos_Aires');
@@ -17,7 +17,7 @@ const createcandidate = async (user,name,city,description,curriculum,phone,secto
         name: name, 
         city: city,
         description: description,
-        curriculum:curriculum,
+       curriculum:curriculum,
         phone: phone,
         sector:sector,
         FechaPubli:fechaPublicacion,
@@ -33,7 +33,7 @@ const createcandidate = async (user,name,city,description,curriculum,phone,secto
      
       await newCandidate.save();
   
-      return true; 
+      return newCandidate; 
     } catch (error) {
       console.error('Error al crear publicación:', error);
       throw error;
